@@ -1,0 +1,49 @@
+Summary
+Support Mexican Olympiad of Programming
+
+Description:
+Every year Jalisco hosts the Mexican Olympiad of State programming: Jalisco.
+Each year we have the 
+
+
+
+Mexican Olympiad in Informatics (OMI for its acronym in Spanish)
+In this Olympiad, we bring students from elementary to high school to participate in a series of programming and examinations.
+
+This Olympiad brings together more than 100 students from across the state of Jalisco, the best of them represent our state in the Mexican Olympiad in Informatics (OMI for its acronym in Spanish) where the best of Mexico are selected to participate in the International Olympiad in Informatics (IOI).
+
+Holding this Olympiad requires a lot of work from the community where students, teachers, schools and companies collaborate together to provide students with the knowledge they need for today's challenges.
+
+Project Goals
+General Objetive:
+- Desarrollar en niños y jovenes el interes de la programacion. 
+
+- Entrenar a los participantes en programacion (algoritmos, estructuras de datos, matematicas).
+- Colaborar con profesores y escuelas para mejorar los skills en programacion. 
+- Encontrar en etapas tempranas el talento y proporcionar las herramientas para desarrollarlo.
+- Participar en el concurso de OMI next year. 
+
+Start 
+16-Sep-19
+28-Feb-20
+
+Project budget
+500 - 1000
+
+Category
+Quality Education
+
+Social media
+Company Facebook
+
+Promotional Items
+T-shirt
+
+Other organizations 
+Solacyt
+
+Number of beneficiaries 
+200 students 
+
+Additional Information
+omijal.org
