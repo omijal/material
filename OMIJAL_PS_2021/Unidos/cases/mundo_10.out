@@ -1,0 +1,12 @@
+<resultados>
+	<mundos>
+		<mundo nombre="mundo_0">
+			<linea fila="98" compresionDeCeros="true">(98) 10 </linea>
+		</mundo>
+	</mundos>
+	<programas>
+		<programa nombre="p1" resultadoEjecucion="FIN PROGRAMA">
+			<karel x="98" y="98" mochila="0"/>
+		</programa>
+	</programas>
+</resultados>

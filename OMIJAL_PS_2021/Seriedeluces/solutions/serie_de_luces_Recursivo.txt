@@ -1,0 +1,51 @@
+iniciar-programa
+
+define-nueva-instruccion Contar como
+inicio
+	si junto-a-zumbador entonces
+    inicio
+    	coge-zumbador;
+        si frente-libre entonces
+        inicio
+        	avanza;
+        	Contar;
+        fin;
+        deja-zumbador;      
+    fin
+    sino
+    inicio
+    	si frente-libre entonces
+    	inicio
+    		avanza;
+        	Contar;
+    	fin;
+	fin;
+fin;
+
+    inicia-ejecucion
+        mientras frente-libre hacer
+        inicio
+        	si junto-a-zumbador entonces
+            inicio
+            	coge-zumbador;
+            fin
+            sino
+            inicio
+            	deja-zumbador;
+            fin;
+            avanza;
+        fin;
+        si junto-a-zumbador entonces
+            inicio
+            	coge-zumbador;
+            fin
+            sino
+            inicio
+            	deja-zumbador;
+            fin;
+            gira-izquierda;
+            gira-izquierda;
+            Contar;                      
+        apagate;
+    termina-ejecucion
+finalizar-programa

@@ -1,0 +1,16 @@
+iniciar-programa
+    inicia-ejecucion
+        mientras junto-a-zumbador hacer
+        	coge-zumbador;
+        gira-izquierda;
+        avanza;
+        gira-izquierda;
+        gira-izquierda;        
+        repetir 20 veces deja-zumbador;
+        avanza;
+        repetir 20 veces deja-zumbador;
+        avanza;
+        repetir 20 veces deja-zumbador;
+        apagate;
+    termina-ejecucion
+finalizar-programa

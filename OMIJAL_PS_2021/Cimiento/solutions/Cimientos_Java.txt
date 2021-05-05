@@ -1,0 +1,74 @@
+class program {
+    program () {
+        while(nextToABeeper)
+        {
+        	pickbeeper();
+        }
+        putbeeper();
+        turnleft(); 
+        while(rightIsBlocked&&frontIsClear)
+        {
+			move();
+		}
+        
+        
+         if(frontIsBlocked && rightIsBlocked)
+            {
+            	turnleft();
+        		turnleft();
+            }
+            else
+            {
+            	turnleft();
+        		turnleft();
+                move();
+
+            }         
+        
+        while(anyBeepersInBeeperBag)
+        {
+        	putbeeper();           
+            while(leftIsBlocked&&frontIsClear)
+            {
+            	move();
+            }
+            if(frontIsBlocked&&leftIsBlocked)
+            {
+            	turnleft();
+        		turnleft();        	
+            }
+            else
+            {
+            	turnleft();
+        		turnleft();
+                move();
+            }                       
+            putbeeper();
+            move();            
+            while(notNextToABeeper)
+            {
+            	move();
+            }
+            if(anyBeepersInBeeperBag)
+            {
+            	putbeeper();
+            }
+            while(rightIsBlocked&&frontIsClear)
+            {
+                move();
+            }
+            if(frontIsBlocked&&rightIsBlocked)
+            {
+            	turnleft();
+        		turnleft();            
+            }
+            else
+            {
+            	turnleft();
+        		turnleft();
+                move();
+            }
+        } 
+        turnoff();
+    }
+}

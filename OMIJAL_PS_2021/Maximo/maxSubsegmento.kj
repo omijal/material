@@ -1,0 +1,211 @@
+class program {
+  void north(){ while(!facingNorth) turn(1); }
+  void south(){ while(!facingSouth) turn(1); }
+  void east(){ while(!facingEast) turn(1); }
+  void west(){ while(!facingWest) turn(1); }
+  void touchWall(){ while(frontIsClear) go(1); }
+  void touchBeeper(){ while(!nextToABeeper) go(1); }
+  void put(x) { iterate(x) putbeeper(); }
+  void take(x) { iterate(x) pickbeeper(); }
+  void turn(x) { iterate(x) turnleft(); }
+  void go(x) { iterate(x) move(); }
+  void sube(){ north(); if(frontIsClear) go(1); }
+  void baja(){ south(); if(frontIsClear) go(1); }
+  void acumula(x){
+    if(!nextToABeeper){
+      baja();
+      east();
+      touchWall();
+      put(x);
+      west();
+      go(1);
+      touchBeeper();
+      sube();
+    }else{
+      take(1);
+      acumula(succ(x));
+      put(1);
+    }
+  }
+  void desacumula(x){
+    if(!nextToABeeper){
+      baja();
+      east();
+      touchWall();
+      take(x);
+      baja();
+      west();
+      go(1);
+      touchBeeper();
+      go(1);
+      sube();
+      sube();
+    }else{
+      take(1);
+      desacumula(succ(x));
+      put(1);
+    }
+  }
+  void suma(){
+  	sube(); sube();
+    acumula(0);
+    baja(); baja();
+  }
+  void resta(){
+    sube(); sube();
+    desacumula(0);
+    baja(); baja();
+  }
+  void mejoraRes(x){
+    iterate(x){
+      if(nextToABeeper) take(1);
+    }
+    iterate(x) put(1);
+  }
+  void midelr(x){
+    if(nextToABeeper){
+      east();
+      touchWall();
+      sube();
+      sube();
+      mejoraRes(x);
+      baja();
+      baja();
+    }else{
+      go(1);
+      midelr(succ(x));
+    }
+  }
+  void actualizaRes(){
+    sube();
+    west();
+    go(1);
+    touchBeeper();
+    baja();
+    west();
+    midelr(1);
+  }
+  void diffcomp(x){
+    if(iszero(x)){
+      actualizaRes();
+      return();
+    }else{
+      if(!nextToABeeper){
+        iterate(3) sube();
+        put(1); // booleano -> suma > S, entonces recorre L
+        iterate(3) baja();
+      }
+      else{
+        take(1);
+        diffcomp(pred(x));
+        put(1);
+      }
+    }
+  }
+  void diffmem(x){
+    if(!nextToABeeper){
+      baja();
+      diffcomp(x);
+      sube();
+      return();
+    }else{
+      take(1);
+      diffmem(succ(x));
+      put(1);
+    }
+  }
+  void compara(){
+    baja();
+    baja();
+    east();
+    touchWall();
+    sube();
+    diffmem(0);
+  }
+  void checaBooleano(){
+    south();
+    touchWall();
+    east();
+    touchWall();
+    iterate(3) sube();
+    if(nextToABeeper){
+      take(1);
+      iterate(3) baja();
+      avanzaL();
+    }else iterate(3) baja();
+  }
+  void avanzaL(){
+    baja();
+    baja();
+    east();
+    touchWall();
+    west();
+    go(1);
+    touchBeeper();
+    sube();
+    if(nextToABeeper) return();
+    else{
+      baja();
+      take(1);
+      east();
+      go(1);
+      put(1);
+      west();
+      go(1);
+      resta();
+      compara();
+      checaBooleano();
+    }
+  }
+  void avanzaR(){
+    baja();
+    baja();
+    east();
+    touchWall();
+    sube();
+    west();
+    go(1);
+    touchBeeper();
+    sube();
+    east();
+    if(!frontIsClear){
+      limpiaMapa();
+      turnoff();
+    }
+    baja();
+    take(1);
+    east();
+    go(1);
+    put(1);
+    suma();
+    compara();
+    checaBooleano();
+  }
+  void limpia(){
+    while(nextToABeeper) take(1);
+    while(frontIsClear){
+      go(1);
+      while(nextToABeeper) take(1);
+    }
+    while(nextToABeeper) take(1);
+  }
+  void limpiaMapa(){
+    south(); touchWall();
+    west(); limpia();
+    sube();
+    east(); limpia();
+    sube(); sube(); while(nextToABeeper) take(1);
+  }
+  program () {
+  	put(1);
+    sube();
+    put(1);
+    baja();
+    suma();
+    compara();
+    while(iszero(0)){
+      avanzaR();
+    }
+    turnoff();
+  }
+}

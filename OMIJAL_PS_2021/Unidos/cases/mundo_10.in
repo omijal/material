@@ -1,0 +1,23 @@
+<ejecucion>
+	<condiciones instruccionesMaximasAEjecutar="10000000" longitudStack="65000"></condiciones>
+	<mundos>
+		<mundo nombre="mundo_0" ancho="100" alto="100">
+			<monton x="98" y="98" zumbadores="3"></monton>
+			<monton x="99" y="98" zumbadores="4"></monton>
+			<monton x="98" y="99" zumbadores="2"></monton>
+			<monton x="99" y="99" zumbadores="1"></monton>
+			<pared x1="97" y1="98" x2="98"></pared>
+			<pared x1="98" y1="97" y2="98"></pared>
+			<pared x1="98" y1="98" x2="99"></pared>
+			<pared x1="98" y1="98" y2="99"></pared>
+			<posicionDump x="98" y="98"></posicionDump>
+		</mundo>
+	</mundos>
+	<programas tipoEjecucion="CONTINUA" intruccionesCambioContexto="1" milisegundosParaPasoAutomatico="0">
+		<programa nombre="p1" ruta="{$2$}" mundoDeEjecucion="mundo_0" xKarel="98" yKarel="98" direccionKarel="SUR" mochilaKarel="0">
+			<despliega tipo="MUNDO"></despliega>
+			<despliega tipo="POSICION"></despliega>
+			<despliega tipo="MOCHILA"></despliega>
+		</programa>
+	</programas>
+</ejecucion>

@@ -1,0 +1,139 @@
+class program {
+  void go(x) { iterate(x) move(); }
+  void put(x) { iterate(x) putbeeper(); }
+  void pick(x) { iterate(x) pickbeeper(); }
+  void turn(x) { iterate(x) turnleft(); }
+  void ndir() {
+    if(!frontIsClear && leftIsClear) turn(1);
+    if(!frontIsClear && rightIsClear) turn(3);
+  }
+  void buscaMeta(x){
+    if(nextToABeeper){
+      pick(2);
+      put(x);
+    }else{
+      ndir();
+      if(!frontIsClear) return();
+      go(1);
+      buscaMeta(succ(x));
+    }
+  }
+  void intenta(){
+    go(1);
+    dp();
+    turn(2);go(1);turn(2);
+  }
+  void copia(x){
+    if(!nextToABeeper){
+      turn(2); go(1);
+      put(x);
+      turn(2);
+      go(1);
+    }else{
+      pick(1);
+      copia(succ(x));
+      put(1);
+    }
+  }
+  void init(){
+    go(1);
+    copia(0);
+    turn(2); go(1); turn(2);
+  }
+  void comp(x){
+    if(!nextToABeeper) return();
+    else if(iszero(x)){
+      while(nextToABeeper) pick(1);
+    }else{
+      pick(1);
+      comp(pred(x));
+      put(1);
+    }
+  }
+  void compara(x){
+    if(!nextToABeeper){
+      turn(2); go(1);
+      comp(x);
+      turn(2); go(1);
+    }else{
+      pick(1);
+      compara(succ(x));
+      put(1);
+    }
+  }
+  void dp(){
+    if(nextToABeeper) return();
+    if(frontIsClear) {intenta();}
+    if(leftIsClear) {turn(1); intenta(); turn(3);}
+    if(rightIsClear) {turn(3); intenta(); turn(1);}
+
+    if(frontIsClear) init();
+    else if(leftIsClear) {turn(1); init(); turn(3);}
+    else {turn(3); init(); turn(1);}
+
+    if(frontIsClear){
+      go(1);
+      compara(0);
+      turn(2); go(1); turn(2);
+    }
+    if(leftIsClear){
+      turn(1);
+      go(1);
+      compara(0);
+      turn(2); go(1); turn(2);
+      turn(3);
+    }
+    if(rightIsClear){
+      turn(3);
+      go(1);
+      compara(0);
+      turn(2); go(1); turn(2);
+      turn(1);
+    }
+    put(1);
+  }
+  void corre(x){
+    if(nextToABeeper) turnoff();
+    else if(iszero(x)) turnoff();
+    else if(iszero(pred(x))) turnoff();
+    else if(iszero(pred(pred(x)))) turnoff();
+    else{
+      ndir();
+      go(1);
+      corre(pred(pred(pred(x))));
+    }
+  }
+  void buscaInicio(){
+    ndir();
+    if(!frontIsClear) return();
+    else{
+      go(1);
+      buscaInicio();
+    }
+  }
+  void mem(x){
+    if(!nextToABeeper){
+      put(1);
+      buscaInicio();
+      turn(2);
+      corre(x);
+    }else{
+      pick(1);
+      mem(succ(x));
+    }
+  }
+  program () {
+    buscaMeta(0);
+    ndir(); go(1);
+    dp(); pick(1);
+    while(nextToABeeper){
+      pick(1);
+      turn(2); go(1);
+      put(1);
+      turn(2); go(1);
+    }
+    turn(2); go(1);
+    mem(0);
+    turnoff();
+  }
+}
