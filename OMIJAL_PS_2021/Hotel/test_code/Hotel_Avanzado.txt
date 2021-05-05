@@ -1,0 +1,79 @@
+iniciar-programa
+define-nueva-instruccion gira-derecha como 
+inicio
+	repetir 3 veces gira-izquierda;
+fin;
+
+define-nueva-instruccion contar como 
+inicio
+	si junto-a-zumbador entonces
+    inicio
+    	coge-zumbador;
+        contar;
+        deja-zumbador;
+    fin
+    sino
+    inicio
+    	mientras no-orientado-al-este hacer gira-izquierda; 
+        
+    	si frente-libre entonces
+        inicio        	
+            avanza;
+            contar;
+        fin
+        sino
+        inicio
+        	gira-izquierda;
+            gira-izquierda;
+            mientras frente-libre hacer avanza;
+            gira-izquierda;
+            mientras frente-libre hacer avanza;
+            gira-izquierda;
+        fin;
+    fin;
+    
+fin;
+    inicia-ejecucion
+        {Bajar Gente}
+        mientras frente-libre hacer 
+        inicio
+        	si izquierda-libre entonces
+            inicio
+            	gira-izquierda;
+                mientras frente-libre hacer avanza;
+                contar;
+                mientras frente-libre y izquierda-libre hacer 
+            	avanza;
+        	fin
+            sino
+            inicio
+            	avanza;
+            fin;
+        fin;
+        gira-izquierda;
+        gira-izquierda;
+        
+        mientras frente-libre hacer
+        inicio        
+          mientras frente-libre hacer avanza;
+          gira-izquierda;
+          gira-izquierda;        
+          mientras frente-libre hacer
+          inicio
+              si izquierda-libre entonces
+              inicio
+                  coge-zumbador; 
+                  si no-junto-a-zumbador entonces apagate; 
+                  mientras izquierda-libre hacer avanza;
+              fin
+              sino
+              inicio
+                  avanza;
+              fin;
+          fin;
+          gira-izquierda;
+          gira-izquierda;
+        fin;
+        apagate;
+    termina-ejecucion
+finalizar-programa

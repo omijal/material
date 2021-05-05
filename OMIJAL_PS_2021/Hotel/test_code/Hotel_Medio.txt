@@ -1,0 +1,78 @@
+iniciar-programa
+define-nueva-instruccion gira-derecha como 
+inicio
+	repetir 3 veces gira-izquierda;
+fin;
+    inicia-ejecucion
+        {Bajar Gente}
+        mientras frente-libre hacer 
+        inicio
+        	si izquierda-libre entonces
+            inicio
+            	gira-izquierda;
+                mientras frente-libre hacer avanza;
+                mientras junto-a-zumbador hacer coge-zumbador;
+                si derecha-libre entonces
+                inicio
+                	gira-derecha;
+                	mientras frente-libre hacer 
+                    inicio
+                    	avanza;
+                        mientras junto-a-zumbador hacer coge-zumbador;
+                    fin;
+                    gira-izquierda;
+                    gira-izquierda;
+                    mientras frente-libre hacer avanza;
+                    gira-izquierda;
+                fin
+                sino
+                inicio
+                	gira-izquierda;
+                    gira-izquierda;
+                fin;
+                mientras frente-libre hacer avanza;
+                gira-izquierda;
+                mientras algun-zumbador-en-la-mochila hacer
+                	deja-zumbador; 
+                mientras frente-libre y izquierda-libre hacer 
+            	avanza;
+        	fin
+            sino
+            inicio
+            	avanza;
+            fin;
+        fin;
+        gira-izquierda;
+        gira-izquierda;
+        
+        mientras frente-libre hacer
+        inicio        
+          mientras frente-libre hacer avanza;
+          gira-izquierda;
+          gira-izquierda;        
+          mientras frente-libre hacer
+          inicio
+              si izquierda-libre entonces
+              inicio
+                  coge-zumbador; 
+                  si no-junto-a-zumbador entonces apagate; 
+                  mientras izquierda-libre hacer avanza;
+              fin
+              sino
+              inicio
+                  avanza;
+              fin;
+          fin;
+          gira-izquierda;
+          gira-izquierda;
+        fin;
+        
+        
+        
+        
+        
+        
+        
+        apagate;
+    termina-ejecucion
+finalizar-programa

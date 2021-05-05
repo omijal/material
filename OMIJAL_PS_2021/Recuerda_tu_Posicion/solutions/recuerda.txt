@@ -1,0 +1,48 @@
+iniciar-programa
+define-nueva-instruccion gira-derecha como
+	repetir 3 veces gira-izquierda;
+    
+define-nueva-instruccion elevador como 
+inicio
+    gira-izquierda;
+    gira-izquierda;
+    mientras frente-libre hacer avanza;
+    gira-izquierda;
+    gira-izquierda;
+    mientras junto-a-zumbador hacer 
+    	coge-zumbador;
+    avanza;
+    mientras junto-a-zumbador hacer 
+    	coge-zumbador;
+    avanza;
+    mientras algun-zumbador-en-la-mochila hacer
+    	deja-zumbador;
+fin;
+    
+    inicia-ejecucion
+    	si frente-bloqueado y derecha-bloqueada y izquierda-bloqueada entonces
+        inicio        
+        	elevador;
+        	apagate;
+        fin;
+        
+        si frente-libre y derecha-bloqueada y izquierda-bloqueada entonces
+        inicio
+        	gira-izquierda;
+            si izquierda-libre entonces 
+            inicio
+            	gira-derecha;        		
+                elevador;
+        		mientras no-orientado-al-este hacer gira-izquierda;            	
+            fin
+            sino
+            inicio
+            	gira-derecha;
+            	elevador;
+                mientras no-orientado-al-sur hacer gira-izquierda;            	
+            fin;
+            apagate;            
+        fin;        
+        apagate;
+    termina-ejecucion
+finalizar-programa
