@@ -1,0 +1,115 @@
+iniciar-programa
+define-nueva-instruccion gira-derecha como 
+inicio
+	repetir 3 veces gira-izquierda;
+fin;
+
+define-nueva-instruccion contar como 
+(* Cuenta los huespedes "zumbadores" *)
+(* incluidas las torres contiguas del hotel *)
+(* Usa recursividad simple y al final ya abajo *)
+(* usando la pila de la recursividad deja el total *)
+inicio
+	si junto-a-zumbador entonces
+    inicio
+    	coge-zumbador;
+        contar;
+        deja-zumbador;
+    fin
+    sino
+    inicio
+    	mientras no-orientado-al-este hacer gira-izquierda; 
+        
+    	si frente-libre entonces
+        (* Si el hotel tiene una torre contigua *)
+        (* avanza y suma las huespedes *)
+        inicio        	
+            avanza;
+            contar;
+        fin
+        sino
+        (* Si ya termino el hotel, entonces *)
+        (* regresa al principio del hotel y baja *)
+        (* para que al descargar la pila, lo haga *)
+        (* en la posicion establecida *)
+        inicio
+        	gira-izquierda;
+            gira-izquierda;
+            mientras frente-libre hacer avanza;
+            gira-izquierda;
+            mientras frente-libre hacer avanza;
+            gira-izquierda;
+        fin;
+    fin;
+    
+fin;
+
+(*Programa dividido en 2 secciones*)
+(* 1- Bajar gente*)
+(* 2- Encontrar la opcion con menos gente*)
+
+    inicia-ejecucion
+        (* Bajar Gente, a traves de la funcion contar *)
+        mientras frente-libre hacer 
+        inicio
+        	si izquierda-libre entonces
+            (* Encontro un hotel *)
+            inicio
+            	gira-izquierda;
+                mientras frente-libre hacer avanza;
+                contar;
+                (* Ahora tiene que encontrar donde *)
+                (* termina el hotel o el mundo *)
+                mientras frente-libre y izquierda-libre hacer 
+            	avanza;
+        	fin
+            sino
+            (* Avanza para buscar el siguiente hotel o el fin *)
+            inicio
+            	avanza;
+            fin;
+        fin;
+        gira-izquierda;
+        gira-izquierda;
+        
+        (* En este punto estan abajo todos los huespedes *)
+        (* Y la forma de saber el que tiene menos es *)
+        (* sencilla, va quitando un zumbador por ronda *)
+        (* y se detiene en el primero que se quede en cero *)
+        mientras frente-libre hacer
+        inicio        
+          (* Busca empezar de izq a derecha *)
+          mientras frente-libre hacer avanza;
+          gira-izquierda;
+          gira-izquierda;        
+          
+          (* Aqui inician las rondas, para quitar *)
+          (* un zumbador por ronda, y como empezo *)
+          (* en la izquierda quedarse en el que  este *)
+          (* más cercano a 1,1 *)
+          mientras frente-libre hacer
+          inicio
+              si izquierda-libre entonces
+              (* Encuentra el inicio del hotel *)
+              (* donde se supone estan los zumbadores *)
+              inicio
+                  coge-zumbador; 
+                  (* si se queda sin zumbador, ha encontrado *)
+                  (* la solución y se apaga !!! *)
+                  si no-junto-a-zumbador entonces apagate;
+                  (* sino entonces busca el fin del hotel *)
+                  (* Asi fallaba en un mundo -> *) (* mientras izquierda-libre hacer avanza;*)
+                  mientras izquierda-libre y frente-libre hacer avanza;
+              fin
+              sino
+              inicio
+              (* busca el siguiente hotel *) 
+                  avanza;
+              fin;
+          fin;
+          gira-izquierda;
+          gira-izquierda;
+        fin;
+        apagate;
+    termina-ejecucion
+finalizar-programa
