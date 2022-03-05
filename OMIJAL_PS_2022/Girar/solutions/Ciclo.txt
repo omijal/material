@@ -1,0 +1,12 @@
+iniciar-programa
+    inicia-ejecucion
+    	mientras no-junto-a-zumbador hacer 
+        inicio        	
+        	si frente-libre entonces
+            	avanza;
+            si frente-bloqueado entonces
+            	gira-izquierda;
+        fin;
+        apagate;
+    termina-ejecucion
+finalizar-programa

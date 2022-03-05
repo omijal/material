@@ -1,0 +1,139 @@
+iniciar-programa
+define-nueva-instruccion vuelta como repetir 2 veces gira-izquierda;
+define-nueva-instruccion gira-derecha como repetir 3 veces gira-izquierda;
+
+define-nueva-instruccion centro como
+inicio
+	 vuelta;      
+     gira-derecha;
+     si frente-libre entonces 
+     inicio
+     	avanza;
+     	mientras no-junto-a-zumbador hacer
+     	inicio                	
+     		vuelta;            
+     		avanza;
+     		gira-derecha;
+     		avanza;
+            gira-derecha;
+            avanza;
+     	fin;
+     fin       
+fin;
+
+define-nueva-instruccion linea_tres(x) como
+inicio
+		si junto-a-zumbador entonces
+        inicio
+        	coge-zumbador;
+            linea_tres(sucede(x));
+        fin
+        sino
+        inicio
+        	avanza;
+            si junto-a-zumbador entonces
+            inicio
+            	linea_tres(x);
+            fin
+            sino
+            inicio            	
+                vuelta;                
+                mientras no-junto-a-zumbador hacer 
+                	avanza;
+                          
+                repetir x veces deja-zumbador;
+            fin;
+        fin;
+fin;
+
+define-nueva-instruccion linea_dos(x) como
+inicio
+		si junto-a-zumbador entonces
+        inicio
+        	coge-zumbador;
+            linea_dos(sucede(x));
+        fin
+        sino
+        inicio
+        	avanza;
+            si junto-a-zumbador entonces
+            inicio
+            	linea_dos(x);
+            fin
+            sino
+            inicio            	
+                vuelta;                
+                mientras no-junto-a-zumbador hacer 
+                	avanza;
+                vuelta;
+                avanza;
+                vuelta;               
+                repetir x veces deja-zumbador;
+            fin;
+        fin;
+fin;
+
+
+
+
+define-nueva-instruccion linea(x) como
+inicio
+		si junto-a-zumbador entonces
+        inicio
+        	coge-zumbador;
+            linea(sucede(x));
+        fin
+        sino
+        inicio
+        	avanza;
+            si junto-a-zumbador entonces
+            inicio
+            	linea(x);
+            fin
+            sino
+            inicio
+            	centro;
+                vuelta;
+                avanza;
+                repetir x veces deja-zumbador;
+            fin;
+        fin;
+fin;
+
+define-nueva-instruccion go-home como
+inicio
+	mientras no-orientado-al-norte hacer
+    	gira-izquierda;
+    
+    repetir 4 veces 
+    inicio
+    	si frente-libre entonces
+        inicio
+        	avanza;
+            si junto-a-zumbador entonces
+            inicio
+            	vuelta;
+                avanza;   
+                vuelta;
+            	sal-de-instruccion;
+            fin;
+            vuelta;
+            avanza;    
+            vuelta;
+        fin;
+        gira-izquierda;        
+    fin;
+    
+fin;
+
+    inicia-ejecucion
+        go-home; 
+        linea(0);          
+        
+        linea_dos(0);
+        avanza;
+        linea_tres(0);        
+        
+        apagate;
+    termina-ejecucion
+finalizar-programa

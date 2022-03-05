@@ -1,0 +1,131 @@
+iniciar-programa
+define-nueva-instruccion vuelta como repetir 2 veces gira-izquierda;
+define-nueva-instruccion gira-derecha como repetir 3 veces gira-izquierda;
+
+define-nueva-instruccion centro como
+inicio
+	avanza;
+    gira-derecha;
+    avanza;
+    si junto-a-zumbador entonces
+    inicio
+    	vuelta;
+        avanza;
+        avanza;
+        si junto-a-zumbador entonces
+        inicio
+        	vuelta;
+            avanza;            
+        fin;
+    fin;
+fin;
+
+define-nueva-instruccion linea como
+inicio
+ 		mientras junto-a-zumbador hacer
+        inicio
+        	mientras junto-a-zumbador hacer 
+        	inicio
+        		coge-zumbador;
+        	fin;
+            si frente-libre entonces 
+            	avanza;
+        fin;
+fin;
+
+define-nueva-instruccion go-home como
+inicio
+	mientras no-orientado-al-norte hacer
+    	gira-izquierda;
+    
+    repetir 4 veces 
+    inicio
+    	si frente-libre entonces
+        inicio
+        	avanza;
+            si junto-a-zumbador entonces
+            inicio
+            	vuelta;
+                avanza;   
+                vuelta;
+            	sal-de-instruccion;
+            fin;
+            vuelta;
+            avanza;    
+            vuelta;
+        fin;
+        gira-izquierda;        
+    fin;
+    
+fin;
+
+    inicia-ejecucion
+        go-home; 
+        linea;
+        
+        vuelta;
+        mientras no-junto-a-zumbador hacer
+        inicio
+        	gira-derecha;
+            si frente-libre entonces 
+            inicio
+             	avanza;
+                si junto-a-zumbador entonces
+                inicio
+                	vuelta;
+                    avanza;
+                    mientras algun-zumbador-en-la-mochila hacer
+                    	deja-zumbador; 
+                fin
+                sino
+                inicio
+                	vuelta;
+                    avanza;
+                    gira-izquierda;
+                    vuelta;
+                    avanza;
+                fin;
+            fin
+            sino
+            inicio
+            	gira-izquierda;
+                gira-izquierda;
+                avanza;
+                si junto-a-zumbador entonces
+                inicio
+                	vuelta;
+                    avanza;
+                    mientras algun-zumbador-en-la-mochila hacer
+                    	deja-zumbador; 
+                fin
+                sino
+                inicio
+                	vuelta;
+                    avanza;
+                    gira-derecha;
+                    vuelta;
+                    avanza;
+                fin;
+            fin;
+        fin;
+        
+        linea;
+        vuelta;
+        mientras no-junto-a-zumbador hacer 
+        	avanza;
+        vuelta;
+        avanza;
+        vuelta;
+        deja-zumbador;
+        avanza;
+        linea;
+        vuelta;
+        mientras no-junto-a-zumbador hacer 
+        	avanza;
+        
+        mientras algun-zumbador-en-la-mochila hacer
+        	deja-zumbador;
+        
+        apagate;
+    termina-ejecucion
+finalizar-programa
